@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Balogun's Todo App</title>
+</head>
+<body>
+    <div>Balogun rosheed abiodun</div>
+    
+    <div id="todo-list"></div>
+
+    <input id="date-picker" type="date" />
+    <input id="todo-title" type="text" />
+
+    <button onclick="addTodo()">
+        Add Todo
+     </button>
+
+   <script>
+    const todos = [
+        {title:  'Get groceries',
+        Duedate: '2021-10-04',
+        id: 'id0'}, 
+        {title: 'Wash car',
+        Duedate: '2002-03-12',
+        id: 'id1'}, 
+        {title: 'Make dinner',
+        Duedate: '2021-04-23',
+        id: 'id2'}
+      ];
+    render();
+
+    function addTodo ()
+   {
+    let textbox = document.getElementById('todo-title');
+    let title = textbox.value;
+
+    const DatePicker = document.getElementById('date-picker');
+    const Duedate = DatePicker.value;
+
+    const id = new Date().getTime();
+
+    todos.push({title: title,
+                Duedate: Duedate,
+                id: id});
+
+    render();
+   }
+
+
+   function deleteTodo(event)
+   {
+   const deleteButton = event.target;
+   const idTodelete = deleteButton.id;
+   }
+
+
+    function render ()
+    {
+        //reset code to empty list
+       document.getElementById('todo-list').innerHTML = '';
+
+        
+        todos.forEach(function (todo) 
+        {
+        let element = document.createElement('div');
+        element.innerText = todo.title + '  // ' + todo.Duedate;//todo.tile to acess the object
+
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Delete';
+        deleteButton.style = 'margin-left: 12px';
+        deleteButton.id = todo.id;
+        deleteButton.onclick = deleteTodo;
+
+
+        element.appendChild(deleteButton);
+
+        //reset code to empty list
+        let TodoList = document.getElementById('todo-list');  
+        //reset code to empty list  
+        TodoList.appendChild(element);
+        });
+    }
+
+   </script>
+
+    <script>
+    
+    </script>
+</body>
+</html>
